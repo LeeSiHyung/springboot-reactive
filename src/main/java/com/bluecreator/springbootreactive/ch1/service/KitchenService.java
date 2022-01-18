@@ -1,6 +1,6 @@
-package com.bluecreator.springbootreactive.service;
+package com.bluecreator.springbootreactive.ch1.service;
 
-import com.bluecreator.springbootreactive.domain.Dish;
+import com.bluecreator.springbootreactive.ch1.domain.Dish;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 

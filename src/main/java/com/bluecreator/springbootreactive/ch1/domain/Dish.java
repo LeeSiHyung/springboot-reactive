@@ -1,4 +1,4 @@
-package com.bluecreator.springbootreactive.domain;
+package com.bluecreator.springbootreactive.ch1.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

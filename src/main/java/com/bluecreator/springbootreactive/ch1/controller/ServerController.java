@@ -1,7 +1,7 @@
-package com.bluecreator.springbootreactive.controller;
+package com.bluecreator.springbootreactive.ch1.controller;
 
-import com.bluecreator.springbootreactive.domain.Dish;
-import com.bluecreator.springbootreactive.service.KitchenService;
+import com.bluecreator.springbootreactive.ch1.domain.Dish;
+import com.bluecreator.springbootreactive.ch1.service.KitchenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
