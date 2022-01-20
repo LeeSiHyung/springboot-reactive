@@ -9,7 +9,7 @@ public class HomeController {
 
     @GetMapping("/ch1")
     private Mono<String> home(){
-        return Mono.just("ch1/home");
+        return Mono.just("home");
     }
 
 }
