@@ -24,7 +24,13 @@ ext {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // starter-web은 SERVLET으로 자동으로 선택한다. 만약 같이 사용해야된다면 아래와 같이 설정해야 된다.
+    // public static void main(String[] args) {
+    //     SpringApplication application = new SpringApplication(DemoApplication.class);
+    //     application.setWebApplicationType(WebApplicationType.REACTIVE);
+    //     application.run(args);
+    // }
+    // implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
