@@ -2,11 +2,12 @@ plugins {
     id 'org.springframework.boot' version '2.6.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.asciidoctor.convert" version "1.5.9.2"
 }
 
 group = 'com.bluecreator'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 configurations {
     compileOnly {
@@ -20,6 +21,8 @@ repositories {
 
 ext {
     set('testcontainersVersion', "1.16.2")
+    snippetsDir = file('build/generated-snippets')
+
 }
 
 dependencies {
@@ -37,10 +40,15 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
+    // testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.3.RELEASE'
+    // testImplementation 'org.testcontainers:junit-jupiter'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
     implementation 'org.mongodb:mongodb-driver-sync'
+    implementation 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    // testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
 }
 
 dependencyManagement {
@@ -50,5 +58,23 @@ dependencyManagement {
 }
 
 test {
+    outputs.dir snippetsDir
     useJUnitPlatform()
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+
+    from file("build/asciidoc/html5/")
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
 }

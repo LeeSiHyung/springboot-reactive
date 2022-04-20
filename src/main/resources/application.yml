@@ -1,5 +1,15 @@
 spring:
 
+  devtools:
+    restart:
+      enabled: false
+    # exclude:
+      #  static/**, public/**
+
+  thymeleaf:
+    cache: false
+
+
   webflux:
     hiddenmethod:
       filter:
@@ -12,3 +22,6 @@ spring:
 server:
   port: 8080
 
+logging:
+  level:
+    web: DEBUG
